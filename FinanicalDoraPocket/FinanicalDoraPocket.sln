@@ -3,9 +3,38 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31313.79
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{777FA819-D4B3-46F2-B0E0-145E0CB6AF0A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{7B2713CD-1721-403F-AE55-34D757291783}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "wpf", "wpf", "{F2C87C73-E34A-4685-B025-6C0B76D0C6F6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoraPocket.WPF", "src\wpf\DoraPocket.WPF\DoraPocket.WPF.csproj", "{1FCA0E58-7EBB-4CAE-A8F0-ADE57B33171C}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "DoraPocket.View", "src\wpf\DoraPocket.View\DoraPocket.View.shproj", "{3B3E9DA8-3C3B-430D-BC26-32169FDF5436}"
+EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		src\wpf\DoraPocket.View\DoraPocket.View.projitems*{1fca0e58-7ebb-4cae-a8f0-ade57b33171c}*SharedItemsImports = 5
+		src\wpf\DoraPocket.View\DoraPocket.View.projitems*{3b3e9da8-3c3b-430d-bc26-32169fdf5436}*SharedItemsImports = 13
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1FCA0E58-7EBB-4CAE-A8F0-ADE57B33171C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FCA0E58-7EBB-4CAE-A8F0-ADE57B33171C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FCA0E58-7EBB-4CAE-A8F0-ADE57B33171C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FCA0E58-7EBB-4CAE-A8F0-ADE57B33171C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F2C87C73-E34A-4685-B025-6C0B76D0C6F6} = {777FA819-D4B3-46F2-B0E0-145E0CB6AF0A}
+		{1FCA0E58-7EBB-4CAE-A8F0-ADE57B33171C} = {F2C87C73-E34A-4685-B025-6C0B76D0C6F6}
+		{3B3E9DA8-3C3B-430D-BC26-32169FDF5436} = {F2C87C73-E34A-4685-B025-6C0B76D0C6F6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8AEB9A21-BBFD-4DFE-9402-B459B3793DED}
