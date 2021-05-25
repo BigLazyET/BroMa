@@ -6,6 +6,4 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
-  <Import Project="..\DoraPocket.View\DoraPocket.View.projitems" Label="Shared" />
-
 </Project>

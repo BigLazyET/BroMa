@@ -9,15 +9,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{7B2713CD-1
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "wpf", "wpf", "{F2C87C73-E34A-4685-B025-6C0B76D0C6F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoraPocket.WPF", "src\wpf\DoraPocket.WPF\DoraPocket.WPF.csproj", "{1FCA0E58-7EBB-4CAE-A8F0-ADE57B33171C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoraPocket.WPF", "src\wpf\DoraPocket.WPF\DoraPocket.WPF.csproj", "{1FCA0E58-7EBB-4CAE-A8F0-ADE57B33171C}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "DoraPocket.View", "src\wpf\DoraPocket.View\DoraPocket.View.shproj", "{3B3E9DA8-3C3B-430D-BC26-32169FDF5436}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoraPocket.ViewModel", "src\wpf\DoraPocket.ViewModel\DoraPocket.ViewModel.csproj", "{21340CE8-8015-4118-8303-5DECC11CC084}"
 EndProject
 Global
-	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		src\wpf\DoraPocket.View\DoraPocket.View.projitems*{1fca0e58-7ebb-4cae-a8f0-ade57b33171c}*SharedItemsImports = 5
-		src\wpf\DoraPocket.View\DoraPocket.View.projitems*{3b3e9da8-3c3b-430d-bc26-32169fdf5436}*SharedItemsImports = 13
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -27,6 +23,10 @@ Global
 		{1FCA0E58-7EBB-4CAE-A8F0-ADE57B33171C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1FCA0E58-7EBB-4CAE-A8F0-ADE57B33171C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1FCA0E58-7EBB-4CAE-A8F0-ADE57B33171C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21340CE8-8015-4118-8303-5DECC11CC084}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21340CE8-8015-4118-8303-5DECC11CC084}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21340CE8-8015-4118-8303-5DECC11CC084}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21340CE8-8015-4118-8303-5DECC11CC084}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -34,7 +34,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{F2C87C73-E34A-4685-B025-6C0B76D0C6F6} = {777FA819-D4B3-46F2-B0E0-145E0CB6AF0A}
 		{1FCA0E58-7EBB-4CAE-A8F0-ADE57B33171C} = {F2C87C73-E34A-4685-B025-6C0B76D0C6F6}
-		{3B3E9DA8-3C3B-430D-BC26-32169FDF5436} = {F2C87C73-E34A-4685-B025-6C0B76D0C6F6}
+		{21340CE8-8015-4118-8303-5DECC11CC084} = {F2C87C73-E34A-4685-B025-6C0B76D0C6F6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8AEB9A21-BBFD-4DFE-9402-B459B3793DED}
