@@ -6,4 +6,8 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DoraPocket.ViewModel\DoraPocket.ViewModel.csproj" />
+  </ItemGroup>
+
 </Project>

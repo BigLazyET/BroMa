@@ -11,7 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "wpf", "wpf", "{F2C87C73-E34
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoraPocket.WPF", "src\wpf\DoraPocket.WPF\DoraPocket.WPF.csproj", "{1FCA0E58-7EBB-4CAE-A8F0-ADE57B33171C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoraPocket.ViewModel", "src\wpf\DoraPocket.ViewModel\DoraPocket.ViewModel.csproj", "{21340CE8-8015-4118-8303-5DECC11CC084}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoraPocket.ViewModel", "src\wpf\DoraPocket.ViewModel\DoraPocket.ViewModel.csproj", "{21340CE8-8015-4118-8303-5DECC11CC084}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
