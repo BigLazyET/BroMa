@@ -17,6 +17,7 @@ namespace DoraPocket.WPF
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
+    /// https://docs.microsoft.com/zh-cn/dotnet/desktop/wpf/windows/?view=netdesktop-5.0
     /// </summary>
     public partial class MainWindow : Window
     {

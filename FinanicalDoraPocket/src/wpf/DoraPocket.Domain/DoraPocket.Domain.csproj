@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DoraPocket.Common\DoraPocket.Common.csproj" />
-    <ProjectReference Include="..\DoraPocket.Domain\DoraPocket.Domain.csproj" />
   </ItemGroup>
 
 </Project>
