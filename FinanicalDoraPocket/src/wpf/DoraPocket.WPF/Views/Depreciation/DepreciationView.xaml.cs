@@ -13,10 +13,11 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace DoraPocket.WPF.Depreciation
+namespace DoraPocket.WPF.Views.Depreciation
 {
     /// <summary>
     /// DepreciationView.xaml 的交互逻辑
+    /// 折旧
     /// </summary>
     public partial class DepreciationView : Page
     {

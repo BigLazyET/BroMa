@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Linq;
 using System.Reflection;
 
@@ -26,6 +27,13 @@ namespace DoraPocket.Common
                         services.AddSingleton(serviceType, item.ImplementType);
                     }
                 }
+            }
+
+            var startupAttribute = assembly.GetCustomAttribute<StartupAttribute>();
+            if (startupAttribute != null)
+            {
+                var startup = (IStartup)Activator.CreateInstance(startupAttribute.Startup);
+                startup.ConfigureServices(services);
             }
 
             return services;

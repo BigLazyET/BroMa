@@ -5,8 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DoraPocket.WPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
-    </Grid>
+        SourceInitialized="Window_SourceInitialized"
+        Activated="Window_Activated"
+        Loaded="Window_Loaded"
+        ContentRendered="Window_ContentRendered"
+        Closing="Window_Closing"
+        Deactivated="Window_Deactivated"
+        Closed="Window_Closed"
+        Title="乐乐小工具" WindowStartupLocation="CenterOwner" Topmost="True"
+        WindowState="Maximized" ShowInTaskbar="True" ResizeMode="CanResize" WindowStyle="SingleBorderWindow"
+        Width="800"
+        Height="450"
+        SizeToContent="Manual">
+    <DockPanel>
+        <Menu DockPanel.Dock="Left">
+            <MenuItem Header="折旧"/>
+            <MenuItem Header="归纳"/>
+            <MenuItem x:Name="setting" Header="设置" Click="Setting_Click"/>
+        </Menu>
+        <Frame x:Name="frmMain" NavigationUIVisibility="Hidden" />
+    </DockPanel>
 </Window>

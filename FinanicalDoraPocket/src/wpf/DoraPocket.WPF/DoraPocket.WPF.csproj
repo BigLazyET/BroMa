@@ -7,7 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\SplashScreen.jpeg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DoraPocket.Infrastructure\DoraPocket.Infrastructure.csproj" />
     <ProjectReference Include="..\DoraPocket.ViewModel\DoraPocket.ViewModel.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <SplashScreen Include="Resources\SplashScreen.jpeg" />
   </ItemGroup>
 
 </Project>
