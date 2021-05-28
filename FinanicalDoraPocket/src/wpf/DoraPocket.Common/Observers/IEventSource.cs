@@ -5,7 +5,7 @@ namespace DoraPocket.Common.Observers
 {
     public interface IEventSource
     {
-        IDisposable Subscribe(Func<string, object, Task> observer);
+        IDisposable Subscribe(string eventName, Func<object, Task> observer);
 
         void Fire(string eventName, object arguments);
     }

@@ -12,49 +12,34 @@ namespace DoraPocket.Common.Observers
     /// </summary>
     public class EventSource : IEventSource
     {
-        private readonly ConcurrentDictionary<Func<string, object, Task>, Func<string, object, Task>> observers;
+        private readonly ConcurrentDictionary<string, Func<object, Task>> observers;
 
         public EventSource()
         {
-            observers = new ConcurrentDictionary<Func<string, object, Task>, Func<string, object, Task>>();
+            observers = new ConcurrentDictionary<string, Func<object, Task>>();
         }
 
         public void Fire(string eventName, object arguments)
         {
             Guard.ArgumentNotNullOrWhiteSpace(eventName, nameof(eventName));
 
-            //Task.Run(async () => {
-            //    foreach (var observer in _observers.Keys)
-            //    {
-            //        try
-            //        {
-            //            await observer(eventName, arguments);
-            //        }
-            //        catch (Exception ex)
-            //        {
-            //            //Log.Error(ex, "Unhandled error!");
-            //        }
-            //    }
-            //});
-
-            observers.Keys.AsParallel().ForAll(async observer =>
+            if (!observers.ContainsKey(eventName))
             {
-                try
-                {
-                    await observer(eventName, arguments);
-                }
-                catch (Exception ex)
-                {
-                    //TODO
-                }
-            });
+                throw new ArgumentException($"eventName '{eventName}' is not subscribe before");
+            }
+            var observer = observers[eventName];
         }
 
-        public IDisposable Subscribe(Func<string, object, Task> observer)
+        public IDisposable Subscribe(string eventName, Func<object, Task> observer)
         {
+            Guard.ArgumentNotNull(eventName, nameof(eventName));
             Guard.ArgumentNotNull(observer, nameof(observer));
-            observers[observer] = observer;
-            return new Disposable(() => observers.TryRemove(observer, out _));
+            if (observers.ContainsKey(eventName))
+            {
+                throw new ArgumentException($"eventName '{eventName}' is already subscribe before");
+            }
+            observers[eventName] = observer;
+            return new Disposable(() => observers.TryRemove(eventName, out _));
         }
 
         private class Disposable : IDisposable
