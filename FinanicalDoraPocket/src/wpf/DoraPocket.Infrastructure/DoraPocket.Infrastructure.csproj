@@ -9,4 +9,8 @@
     <ProjectReference Include="..\DoraPocket.Domain\DoraPocket.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Repositories\" />
+  </ItemGroup>
+
 </Project>
