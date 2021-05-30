@@ -19,4 +19,10 @@
     <SplashScreen Include="Resources\SplashScreen.jpeg" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Page Update="Views\Induction\InductionView.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+  </ItemGroup>
+
 </Project>

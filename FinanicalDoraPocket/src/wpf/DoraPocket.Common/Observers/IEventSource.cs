@@ -8,5 +8,7 @@ namespace DoraPocket.Common.Observers
         IDisposable Subscribe(string eventName, Func<object, Task> observer);
 
         void Fire(string eventName, object arguments);
+
+        bool CanSubscribe(string eventName);
     }
 }

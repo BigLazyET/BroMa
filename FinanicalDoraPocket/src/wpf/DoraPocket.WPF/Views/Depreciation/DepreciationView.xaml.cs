@@ -1,5 +1,10 @@
-﻿using DoraPocket.ViewModel.Depreciation;
+﻿using DoraPocket.Common;
+using DoraPocket.Common.Observers;
+using DoraPocket.ViewModel.Depreciation;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Win32;
+using System.IO;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -11,6 +16,7 @@ namespace DoraPocket.WPF.Views.Depreciation
     /// </summary>
     public partial class DepreciationView : Page
     {
+        private readonly IEventSource eventSource;
         private readonly DepreciationViewModel depreciationViewModel;
 
         public DepreciationView()
@@ -19,6 +25,11 @@ namespace DoraPocket.WPF.Views.Depreciation
             InitializeComponent();
 
             depreciationViewModel = DataContext as DepreciationViewModel;
+
+            eventSource = ServiceProviderAccessor.Current.GetRequiredService<IEventSource>();
+            
+            if(eventSource.CanSubscribe(EventSourceKeys.Depreciation_Valid))
+                eventSource.Subscribe(EventSourceKeys.Depreciation_Valid, async args => await Dispatcher.InvokeAsync(()=> MessageBox.Show(args.ToString())));
         }
 
         private void PickFileBtn_Click(object sender, RoutedEventArgs e)
@@ -35,6 +46,13 @@ namespace DoraPocket.WPF.Views.Depreciation
             // process open file dialog box result
             if (result == true)
             {
+                var filePath = dialog.FileName;
+                var extension = Path.GetExtension(filePath);
+                if (extension != ".xlsx" || extension != ".xls")
+                {
+                    MessageBox.Show("请选择扩展名为xlsx或者xls的excel类型的文件！");
+                    return;
+                }
                 depreciationViewModel.FilePath = dialog.FileName;
             }
         }

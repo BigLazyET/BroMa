@@ -1,4 +1,5 @@
 ﻿using DoraPocket.WPF.Setting;
+using System;
 using System.Diagnostics;
 using System.Windows;
 
@@ -62,9 +63,7 @@ namespace DoraPocket.WPF
         {
             // If data is dirty, prompt user and ask for a response
             // MessageBox: https://docs.microsoft.com/zh-cn/dotnet/desktop/wpf/windows/how-to-open-message-box?view=netdesktop-5.0
-            var result = MessageBox.Show("Document has changed. Close without saving?",
-                                             "Question",
-                                             MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            var result = MessageBox.Show("请注意保存当前工作，确定关闭吗？", "询问", MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
             // User doesn't want to close, cancel closure
             if (result == MessageBoxResult.No)
@@ -94,6 +93,16 @@ namespace DoraPocket.WPF
         private void Window_ContentRendered(object sender, System.EventArgs e)
         {
 
+        }
+
+        private void Depreciation_Click(object sender, RoutedEventArgs e)
+        {
+            frmMain.Navigate(new Uri("Views/Depreciation/DepreciationView.xaml", UriKind.RelativeOrAbsolute));
+        }
+
+        private void Induction_Click(object sender, RoutedEventArgs e)
+        {
+            frmMain.Navigate(new Uri("Views/Induction/InductionView.xaml", UriKind.RelativeOrAbsolute));
         }
     }
 }

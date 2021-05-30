@@ -12,17 +12,17 @@
         Closing="Window_Closing"
         Deactivated="Window_Deactivated"
         Closed="Window_Closed"
-        Title="乐乐小工具" WindowStartupLocation="CenterOwner" Topmost="True"
+        Title="小马哥小工具" WindowStartupLocation="CenterOwner" Topmost="True"
         WindowState="Maximized" ShowInTaskbar="True" ResizeMode="CanResize" WindowStyle="SingleBorderWindow"
         Width="800"
         Height="450"
         SizeToContent="Manual">
     <DockPanel>
         <Menu DockPanel.Dock="Left">
-            <MenuItem Header="折旧"/>
-            <MenuItem Header="归纳"/>
+            <MenuItem x:Name="depreciation" Header="折旧" Click="Depreciation_Click"/>
+            <MenuItem x:Name="induction" Header="归纳" Click="Induction_Click"/>
             <MenuItem x:Name="setting" Header="设置" Click="Setting_Click"/>
         </Menu>
-        <Frame x:Name="frmMain" NavigationUIVisibility="Hidden" />
+        <Frame x:Name="frmMain" NavigationUIVisibility="Hidden" Source="Views/Depreciation/DepreciationView.xaml" />
     </DockPanel>
 </Window>

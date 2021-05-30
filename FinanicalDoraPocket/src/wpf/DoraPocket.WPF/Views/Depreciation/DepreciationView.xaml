@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:DoraPocket.WPF.Views.Depreciation"
       xmlns:viewModel="clr-namespace:DoraPocket.ViewModel.Depreciation;assembly=DoraPocket.ViewModel"
-      mc:Ignorable="d" 
+      mc:Ignorable="d"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="DepreciationView">
 
@@ -43,7 +43,7 @@
             <!--<Label Grid.Row="2" Content="文件路径：" FontSize="18" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch"/>-->
             <StackPanel Grid.Row="2" Orientation="Vertical" VerticalAlignment="Center">
                 <Label Content="Sheet 名：" FontSize="18" VerticalContentAlignment="Center"/>
-                <TextBox Height="35" Width="{Binding ElementName=contentGrid, Path=ActualWidth}" Text="{Binding Path=SheetName}">
+                <TextBox Height="35" VerticalContentAlignment="Center" Width="{Binding ElementName=contentGrid, Path=ActualWidth}" Text="{Binding Path=SheetName}">
                     <TextBox.Resources>
                         <VisualBrush x:Key="sheetPlaceholder" TileMode="None" Opacity="0.5" Stretch="None" AlignmentX="Left">
                             <VisualBrush.Visual>
@@ -73,11 +73,11 @@
                 </Grid.ColumnDefinitions>
                 <StackPanel x:Name="sp" Grid.Column="0" Orientation="Vertical" VerticalAlignment="Center">
                     <Label Content="原币原值(列名)：" FontSize="18" VerticalContentAlignment="Center"/>
-                    <TextBox Height="35" Width="{Binding ElementName=sp, Path=ActualWidth}" Text="{Binding OriginalValue}">
+                    <TextBox Height="35" VerticalContentAlignment="Center" Width="{Binding ElementName=sp, Path=ActualWidth}" Text="{Binding Path=OriginalValueColumnName}">
                         <TextBox.Resources>
                             <VisualBrush x:Key="valuePlaceholder" TileMode="None" Opacity="0.5" Stretch="None" AlignmentX="Left">
                                 <VisualBrush.Visual>
-                                    <TextBlock FontStyle="Italic" Text="不填默认列名：原币原值；若不同，请填入新的列名"/>
+                                    <TextBlock FontStyle="Italic" Text="不填默认列名：原币原值；否则请填入自定义列名"/>
                                 </VisualBrush.Visual>
                             </VisualBrush>
                         </TextBox.Resources>
@@ -97,11 +97,11 @@
                 </StackPanel>
                 <StackPanel Grid.Column="2" Orientation="Vertical" VerticalAlignment="Center">
                     <Label Content="净残值率%(列名)：" FontSize="18" VerticalContentAlignment="Center"/>
-                    <TextBox Height="35" Width="{Binding ElementName=sp, Path=ActualWidth}" Text="{Binding ResidualValueRate}">
+                    <TextBox Height="35" VerticalContentAlignment="Center" Width="{Binding ElementName=sp, Path=ActualWidth}" Text="{Binding Path=ResidualValueRateColumnName}">
                         <TextBox.Resources>
                             <VisualBrush x:Key="residualValueRatePlaceholder" TileMode="None" Opacity="0.5" Stretch="None" AlignmentX="Left">
                                 <VisualBrush.Visual>
-                                    <TextBlock FontStyle="Italic" Text="不填默认列名：净残值率%；若不同，请填入新的列名"/>
+                                    <TextBlock FontStyle="Italic" Text="不填默认列名：净残值率%；否则请填入自定义列名"/>
                                 </VisualBrush.Visual>
                             </VisualBrush>
                         </TextBox.Resources>
@@ -128,11 +128,11 @@
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Column="0" Orientation="Vertical" VerticalAlignment="Center">
                     <Label Content="使用月限(列名)：" FontSize="18" VerticalContentAlignment="Center"/>
-                    <TextBox Height="35" Width="{Binding ElementName=sp, Path=ActualWidth}" Text="{Binding MonthOfUse}">
+                    <TextBox Height="35" VerticalContentAlignment="Center" Width="{Binding ElementName=sp, Path=ActualWidth}" Text="{Binding Path=MonthOfUseColumnName}">
                         <TextBox.Resources>
                             <VisualBrush x:Key="monthOfUsePlaceholder" TileMode="None" Opacity="0.5" Stretch="None" AlignmentX="Left">
                                 <VisualBrush.Visual>
-                                    <TextBlock FontStyle="Italic" Text="不填默认列名：使用月限；若不同，请填入新的列名"/>
+                                    <TextBlock FontStyle="Italic" Text="不填默认列名：使用月限；否则请填入自定义列名"/>
                                 </VisualBrush.Visual>
                             </VisualBrush>
                         </TextBox.Resources>
@@ -152,11 +152,11 @@
                 </StackPanel>
                 <StackPanel Grid.Column="2" Orientation="Vertical" VerticalAlignment="Center">
                     <Label Content="增加月份(列名)：" FontSize="18" VerticalContentAlignment="Center"/>
-                    <TextBox Height="35" Width="{Binding ElementName=sp, Path=ActualWidth}" Text="{Binding AddMonth}">
+                    <TextBox Height="35" VerticalContentAlignment="Center" Width="{Binding ElementName=sp, Path=ActualWidth}" Text="{Binding Path=AddMonthColumnName}">
                         <TextBox.Resources>
                             <VisualBrush x:Key="addMonthPlaceholder" TileMode="None" Opacity="0.5" Stretch="None" AlignmentX="Left">
                                 <VisualBrush.Visual>
-                                    <TextBlock FontStyle="Italic" Text="不填默认列名：增加月份；若不同，请填入新的列名，形如：202108"/>
+                                    <TextBlock FontStyle="Italic" Text="不填默认列名：增加月份；否则请填入自定义列名"/>
                                 </VisualBrush.Visual>
                             </VisualBrush>
                         </TextBox.Resources>
@@ -183,11 +183,11 @@
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Column="0" Orientation="Vertical" VerticalAlignment="Center">
                     <Label Content="计算基准年份：" FontSize="18" VerticalContentAlignment="Center"/>
-                    <TextBox Height="35" Width="{Binding ElementName=sp, Path=ActualWidth}" Text="{Binding BaseYear}">
+                    <TextBox Height="35" VerticalContentAlignment="Center" Width="{Binding ElementName=sp, Path=ActualWidth}" Text="{Binding BaseYear}">
                         <TextBox.Resources>
                             <VisualBrush x:Key="baseYearPlaceholder" TileMode="None" Opacity="0.5" Stretch="None" AlignmentX="Left">
                                 <VisualBrush.Visual>
-                                    <TextBlock FontStyle="Italic" Text="不填写则默认是当年；若不同，请填入新的年份；比如：2021"/>
+                                    <TextBlock FontStyle="Italic" Text="不填则默认当年；否则请填入自定义年份；比如：2021，仅限数字输入"/>
                                 </VisualBrush.Visual>
                             </VisualBrush>
                         </TextBox.Resources>
@@ -205,6 +205,11 @@
                         </TextBox.Style>
                     </TextBox>
                 </StackPanel>
+            </Grid>
+            <Grid Grid.Row="6">
+                <Label Content="状态：" VerticalAlignment="Center"/>
+                <Label Content="未开始" VerticalAlignment="Center" Margin="40,0,0,0"/>
+                <Button Content="计算" Width="100" Height="30" HorizontalAlignment="Right" Command="{Binding PreciationCommand}"/>
             </Grid>
         </Grid>
     </Grid>

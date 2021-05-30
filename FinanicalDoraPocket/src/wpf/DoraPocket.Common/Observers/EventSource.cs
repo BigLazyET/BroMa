@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace DoraPocket.Common.Observers
@@ -28,6 +25,14 @@ namespace DoraPocket.Common.Observers
                 throw new ArgumentException($"eventName '{eventName}' is not subscribe before");
             }
             var observer = observers[eventName];
+            observer(arguments);
+        }
+
+        public bool CanSubscribe(string eventName)
+        {
+            if (observers.ContainsKey(eventName))
+                return false;
+            return true;
         }
 
         public IDisposable Subscribe(string eventName, Func<object, Task> observer)
@@ -36,7 +41,8 @@ namespace DoraPocket.Common.Observers
             Guard.ArgumentNotNull(observer, nameof(observer));
             if (observers.ContainsKey(eventName))
             {
-                throw new ArgumentException($"eventName '{eventName}' is already subscribe before");
+                //throw new ArgumentException($"eventName '{eventName}' is already subscribe before");
+                return new Disposable(null);
             }
             observers[eventName] = observer;
             return new Disposable(() => observers.TryRemove(eventName, out _));
