@@ -11,8 +11,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="NPOI" Version="2.5.3" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\DoraPocket.Infrastructure\DoraPocket.Infrastructure.csproj" />
-    <ProjectReference Include="..\DoraPocket.ViewModel\DoraPocket.ViewModel.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,5 +27,7 @@
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
     </Page>
   </ItemGroup>
+
+  <Import Project="..\DoraPocket.ViewModel\DoraPocket.ViewModel.projitems" Label="Shared" />
 
 </Project>

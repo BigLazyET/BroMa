@@ -28,6 +28,7 @@ namespace DoraPocket.ViewModel.Depreciation
         public DepreciationViewModel()
         {
             eventSource = ServiceProviderAccessor.Current.GetRequiredService<IEventSource>();
+            PreciationCommand = new BaseCommand(_ => DoPreciationWork());
         }
         #endregion
 
@@ -116,7 +117,7 @@ namespace DoraPocket.ViewModel.Depreciation
 
         private void DoPreciationWork()
         {
-            if(!Validation(out string message))
+            if (!Validation(out string message))
             {
                 eventSource.Fire(EventSourceKeys.Depreciation_Valid, message);
                 return;
@@ -219,9 +220,9 @@ namespace DoraPocket.ViewModel.Depreciation
                         if (!int.TryParse(year, out var yearValue))
                             continue;
                         var month = addMonth.Substring(4);
-                        if (!int.TryParse(month,out var monthValue))
+                        if (!int.TryParse(month, out var monthValue))
                             continue;
-                        if (monthValue <=0 || monthValue > 12)
+                        if (monthValue <= 0 || monthValue > 12)
                             continue;
                         var average = Math.Round((originalValue * (100 - residualValueRate) / 100) / monthOfUse, 2);
                         // 如果计算基准年份是2020年，如果在2020之前，按照2020整年算；如果是202008，则算当月之后当年的月份
@@ -234,8 +235,6 @@ namespace DoraPocket.ViewModel.Depreciation
                             resultCell.SetCellValue(average * (12 - monthValue));
                     }
                 }
-
-
             }
 
             // 保存结果

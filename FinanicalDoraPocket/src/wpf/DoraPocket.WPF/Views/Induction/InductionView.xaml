@@ -4,9 +4,18 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:DoraPocket.WPF.Views.Induction"
+      xmlns:viewModel="clr-namespace:DoraPocket.ViewModel.Induction"
       mc:Ignorable="d"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="InductionView">
+
+    <Page.Resources>
+        <viewModel:InductionViewModel x:Key="inductionVM"/>
+    </Page.Resources>
+
+    <Page.DataContext>
+        <Binding Source="{StaticResource inductionVM}"/>
+    </Page.DataContext>
 
     <Grid x:Name="grid" Background="White">
         <Grid.ColumnDefinitions>
@@ -26,6 +35,100 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Label Grid.Row="0" Content="归纳" HorizontalAlignment="Center" FontWeight="Bold" FontSize="25" VerticalAlignment="Center"/>
+            <StackPanel Grid.Row="1" Orientation="Horizontal">
+                <Label Content="归纳规则文件路径：" FontSize="18" VerticalContentAlignment="Center"/>
+                <Button x:Name="pickRuleFileBtn" Content="选取单个文件" FontSize="18" Height="35" Width="120" Click="PickRuleFileBtn_Click"/>
+                <Label Content="{Binding Path=FilePath}" FontSize="18" VerticalContentAlignment="Center" ToolTip="{Binding RuleFilePath}" />
+            </StackPanel>
+            <StackPanel Grid.Row="2" Orientation="Horizontal">
+                <Label Content="待归纳的文件路径：" FontSize="18" VerticalContentAlignment="Center"/>
+                <Button x:Name="pickInductionFileBtn" Content="选取单个文件" FontSize="18" Height="35" Width="120" Click="PickInductionFileBtn_Click"/>
+                <Label Content="{Binding Path=FilePath}" FontSize="18" VerticalContentAlignment="Center" ToolTip="{Binding InductionFilePath}" />
+            </StackPanel>
+            <StackPanel Grid.Row="2" Orientation="Vertical" VerticalAlignment="Center">
+                <Label Content="Sheets：" FontSize="18" VerticalContentAlignment="Center"/>
+                <TextBox Height="35" VerticalContentAlignment="Center" Width="{Binding ElementName=contentGrid, Path=ActualWidth}" Text="{Binding SheetIndexes}">
+                    <TextBox.Resources>
+                        <VisualBrush x:Key="sheetPlaceholder" TileMode="None" Opacity="0.5" Stretch="None" AlignmentX="Left">
+                            <VisualBrush.Visual>
+                                <TextBlock FontStyle="Italic" Text="请填写需要归纳的sheet，用英文','分隔（比如1,3代表第1和第3个sheet做归纳）；不填默认全部sheet"/>
+                            </VisualBrush.Visual>
+                        </VisualBrush>
+                    </TextBox.Resources>
+                    <TextBox.Style>
+                        <Style TargetType="TextBox">
+                            <Style.Triggers>
+                                <Trigger Property="Text" Value="{x:Null}">
+                                    <Setter Property="Background" Value="{StaticResource sheetPlaceholder}"/>
+                                </Trigger>
+                                <Trigger Property="Text" Value="">
+                                    <Setter Property="Background" Value="{StaticResource sheetPlaceholder}"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
+            </StackPanel>
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <StackPanel x:Name="sp" Grid.Column="0" Orientation="Vertical" VerticalAlignment="Center">
+                    <Label Content="归纳起始行：" FontSize="18" VerticalContentAlignment="Center"/>
+                    <TextBox Height="35" VerticalContentAlignment="Center" Width="{Binding ElementName=sp, Path=ActualWidth}" Text="{Binding StartRow}">
+                        <TextBox.Resources>
+                            <VisualBrush x:Key="startRowPlaceholder" TileMode="None" Opacity="0.5" Stretch="None" AlignmentX="Left">
+                                <VisualBrush.Visual>
+                                    <TextBlock FontStyle="Italic" Text="归纳起始行，不填默认从第0行开始归纳"/>
+                                </VisualBrush.Visual>
+                            </VisualBrush>
+                        </TextBox.Resources>
+                        <TextBox.Style>
+                            <Style TargetType="TextBox">
+                                <Style.Triggers>
+                                    <Trigger Property="Text" Value="{x:Null}">
+                                        <Setter Property="Background" Value="{StaticResource startRowPlaceholder}"/>
+                                    </Trigger>
+                                    <Trigger Property="Text" Value="">
+                                        <Setter Property="Background" Value="{StaticResource startRowPlaceholder}"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Grid.Column="2" Orientation="Vertical" VerticalAlignment="Center">
+                    <Label Content="归纳列：" FontSize="18" VerticalContentAlignment="Center"/>
+                    <TextBox Height="35" VerticalContentAlignment="Center" Width="{Binding ElementName=sp, Path=ActualWidth}" Text="{Binding InductionColumn}">
+                        <TextBox.Resources>
+                            <VisualBrush x:Key="columnPlaceholder" TileMode="None" Opacity="0.5" Stretch="None" AlignmentX="Left">
+                                <VisualBrush.Visual>
+                                    <TextBlock FontStyle="Italic" Text="归纳列，此为必填项！"/>
+                                </VisualBrush.Visual>
+                            </VisualBrush>
+                        </TextBox.Resources>
+                        <TextBox.Style>
+                            <Style TargetType="TextBox">
+                                <Style.Triggers>
+                                    <Trigger Property="Text" Value="{x:Null}">
+                                        <Setter Property="Background" Value="{StaticResource columnPlaceholder}"/>
+                                    </Trigger>
+                                    <Trigger Property="Text" Value="">
+                                        <Setter Property="Background" Value="{StaticResource columnPlaceholder}"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="6">
+                <Label Content="状态：" VerticalAlignment="Center"/>
+                <Label Content="未开始" VerticalAlignment="Center" Margin="40,0,0,0"/>
+                <Button Content="归纳" Width="100" Height="30" HorizontalAlignment="Right" Command="{Binding InductionCommand}"/>
+            </Grid>
         </Grid>
     </Grid>
 </Page>

@@ -19,7 +19,7 @@ namespace DoraPocket.ViewModel
 
         protected void SetProperty<T>(ref T item, T value, [CallerMemberName] string propertyName = null)
         {
-            if (!EqualityComparer<T>.Default.Equals(item,value))
+            if (!EqualityComparer<T>.Default.Equals(item, value))
             {
                 item = value;
                 OnPropertyChanged(propertyName);

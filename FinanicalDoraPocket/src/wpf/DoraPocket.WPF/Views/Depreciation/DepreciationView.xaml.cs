@@ -27,8 +27,10 @@ namespace DoraPocket.WPF.Views.Depreciation
             depreciationViewModel = DataContext as DepreciationViewModel;
 
             eventSource = ServiceProviderAccessor.Current.GetRequiredService<IEventSource>();
-            
-            if(eventSource.CanSubscribe(EventSourceKeys.Depreciation_Valid))
+
+            // Dispatcher.Invoke 在UI Thread上运行
+            // https://stackoverflow.com/questions/11625208/accessing-ui-main-thread-safely-in-wpf
+            if (eventSource.CanSubscribe(EventSourceKeys.Depreciation_Valid))
                 eventSource.Subscribe(EventSourceKeys.Depreciation_Valid, async args => await Dispatcher.InvokeAsync(()=> MessageBox.Show(args.ToString())));
         }
 
@@ -38,7 +40,8 @@ namespace DoraPocket.WPF.Views.Depreciation
             var dialog = new OpenFileDialog();
             //dialog.FileName = "折旧"; // 默认文件名
             //dialog.DefaultExt = ".xls"; // 默认文件扩展名
-            dialog.Filter = "All files(.)|*.*"; // 过滤扩展名
+            //dialog.Filter = "Images (*.BMP;*.JPG;*.GIF)|*.BMP;*.JPG;*.GIF|" + "All files(.)|*.*"; // 过滤扩展名
+            dialog.Filter = "Excels (*.xls;*.xlsx)|*.xls;*.xlsx";   // 规定只能是excel类型的文件
 
             // show open file dialog box
             bool? result = dialog.ShowDialog();
