@@ -74,7 +74,7 @@ namespace DoraPocket.ViewModel
         public void Destroy()
         {
             this.canExecute = _ => false;
-            this.execute = _ => { return; }
+            this.execute = _ => { return; };
         }
     }
 }

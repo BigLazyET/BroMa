@@ -81,7 +81,7 @@
                         <TextBox.Resources>
                             <VisualBrush x:Key="startRowPlaceholder" TileMode="None" Opacity="0.5" Stretch="None" AlignmentX="Left">
                                 <VisualBrush.Visual>
-                                    <TextBlock FontStyle="Italic" Text="归纳起始行，不填默认从第0行开始归纳"/>
+                                    <TextBlock FontStyle="Italic" Text="归纳起始行，不填默认从第1行开始归纳；填的值必须大于等于1"/>
                                 </VisualBrush.Visual>
                             </VisualBrush>
                         </TextBox.Resources>
@@ -105,7 +105,7 @@
                         <TextBox.Resources>
                             <VisualBrush x:Key="columnPlaceholder" TileMode="None" Opacity="0.5" Stretch="None" AlignmentX="Left">
                                 <VisualBrush.Visual>
-                                    <TextBlock FontStyle="Italic" Text="归纳列，此为必填项！"/>
+                                    <TextBlock FontStyle="Italic" Text="归纳列，不填默认认为第1列为待归纳列，填的值必须大于等于1"/>
                                 </VisualBrush.Visual>
                             </VisualBrush>
                         </TextBox.Resources>

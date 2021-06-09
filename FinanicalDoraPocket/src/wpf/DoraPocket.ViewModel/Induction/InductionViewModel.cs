@@ -2,6 +2,7 @@
 using DoraPocket.Common.Observers;
 using Microsoft.Extensions.DependencyInjection;
 using NPOI.SS.UserModel;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -93,8 +94,10 @@ namespace DoraPocket.ViewModel.Induction
                 message = "待归纳文件路径不能为空！";
             if (!File.Exists(InductionFilePath))
                 message = "请确保待归纳文件存在！";
-            if (InductionColumn == 0)
-                message = "请填写归纳列！";
+            if (StartRow < 0)
+                message = "归纳起始行设置必须大于等于1！";
+            if (InductionColumn < 0)
+                message = "归纳列设置必须大于等于1！";
             if (!string.IsNullOrWhiteSpace(SheetIndexes))
             {
                 var sheetIndexes = SheetIndexes.Split(',');
@@ -166,17 +169,58 @@ namespace DoraPocket.ViewModel.Induction
                 var extension = Path.GetExtension(InductionFilePath);
                 wb = NpoiHelper.GetWorkbookByExtension(extension, fs);
 
-                // 默认匹配所有sheet
-                for (int i = 0; i < wb.NumberOfSheets; i++)
+                var sheets = Enumerable.Range(0, wb.NumberOfSheets);
+                if (!string.IsNullOrWhiteSpace(SheetIndexes))
                 {
-                    var sheet = wb.GetSheetAt(i);
+                    sheets = SheetIndexes.Split(',').Select(x => int.Parse(x));
+                }
+
+                // 匹配需要匹配的sheet
+                foreach (var sheetIndex in sheets)
+                {
+                    var sheet = wb.GetSheetAt(sheetIndex);
                     if (sheet == null)
                     {
                         // TODO
                         continue;
                     }
-
+                    var startRow = StartRow == 0 ? 0 : StartRow - 1;
+                    var column = InductionColumn == 0 ? 0 : InductionColumn - 1;
+                    for (int i = startRow; i < sheet.LastRowNum; i++)
+                    {
+                        var row = sheet.GetRow(i);
+                        if (row == null)
+                        {
+                            // TODO
+                            continue;
+                        }
+                        
+                        var contentCell = row.GetCell(column);
+                        if (contentCell == null)
+                        {
+                            // TODO
+                            continue;
+                        }
+                        var content = contentCell.ToString();
+                        var value = rules.FirstOrDefault(rule => content.Contains(rule.Key)).Value;
+                        if (value != null)
+                        {
+                            var resultCell = row.GetCell(row.LastCellNum + 1);
+                            if (resultCell == null)
+                                row.CreateCell(row.LastCellNum + 1);
+                            resultCell.SetCellValue(value);
+                        }
+                    }
                 }
+            }
+
+            // 保存结果
+            var resultFilePath = $"{InductionFilePath.Substring(0, InductionFilePath.IndexOf('.'))}{DateTime.Now.ToString("yyyyMMdd")}{Path.GetExtension(InductionFilePath)}";
+            //using (FileStream fileStream = File.Open(filepath,FileMode.Open, FileAccess.ReadWrite))
+            using (FileStream fileStream = new FileStream(resultFilePath, FileMode.OpenOrCreate, FileAccess.ReadWrite))
+            {
+                wb.Write(fileStream);
+                // TODO
             }
         }
         #endregion

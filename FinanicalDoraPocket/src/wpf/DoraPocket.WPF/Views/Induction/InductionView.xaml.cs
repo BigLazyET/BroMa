@@ -35,7 +35,7 @@ namespace DoraPocket.WPF.Views.Induction
             viewModel.InductionFilePath = ChooseFile();
         }
 
-        private void pickRuleFileBtn_Click(object sender, RoutedEventArgs e)
+        private void PickRuleFileBtn_Click(object sender, RoutedEventArgs e)
         {
             viewModel.RuleFilePath = ChooseFile();
         }
