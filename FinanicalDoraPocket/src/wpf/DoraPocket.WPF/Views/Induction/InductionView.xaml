@@ -45,7 +45,7 @@
                 <Button x:Name="pickInductionFileBtn" Content="选取单个文件" FontSize="18" Height="35" Width="120" Click="PickInductionFileBtn_Click"/>
                 <Label Content="{Binding Path=FilePath}" FontSize="18" VerticalContentAlignment="Center" ToolTip="{Binding InductionFilePath}" />
             </StackPanel>
-            <StackPanel Grid.Row="2" Orientation="Vertical" VerticalAlignment="Center">
+            <StackPanel Grid.Row="3" Orientation="Vertical" VerticalAlignment="Center">
                 <Label Content="Sheets：" FontSize="18" VerticalContentAlignment="Center"/>
                 <TextBox Height="35" VerticalContentAlignment="Center" Width="{Binding ElementName=contentGrid, Path=ActualWidth}" Text="{Binding SheetIndexes}">
                     <TextBox.Resources>
@@ -69,7 +69,7 @@
                     </TextBox.Style>
                 </TextBox>
             </StackPanel>
-            <Grid Grid.Row="3">
+            <Grid Grid.Row="4">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition Width="10"/>

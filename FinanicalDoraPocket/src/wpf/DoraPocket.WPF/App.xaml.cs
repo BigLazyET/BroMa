@@ -27,7 +27,7 @@ namespace DoraPocket.WPF
                 .RegisterServices("DoraPocket.Common")      // 利用标签批量注册各个程序集中的服务
                 .RegisterServices("DoraPocket.Domain")
                 .RegisterServices("DoraPocket.Infrastructure")
-                .RegisterServices("DoraPocket.ViewModel")
+                //.RegisterServices("DoraPocket.ViewModel")
                 .RegisterServices("DoraPocket.WPF")
                 .BuildServiceProvider();
             ServiceProviderAccessor.Current = serviceProvider;  // 方便无法通过构造注入的方式获取服务的情形去获取服务

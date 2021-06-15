@@ -1,7 +1,11 @@
 ﻿using DoraPocket.WPF.Setting;
 using System;
 using System.Diagnostics;
+using System.IO;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Resources;
 
 namespace DoraPocket.WPF
 {
@@ -9,6 +13,7 @@ namespace DoraPocket.WPF
     /// Interaction logic for MainWindow.xaml
     /// https://docs.microsoft.com/zh-cn/dotnet/desktop/wpf/windows/?view=netdesktop-5.0
     /// 主副屏1显示：https://www.cnblogs.com/xiefang2008/p/9594104.html
+    /// 图片生成操作为Resource时如何获取：https://www.cnblogs.com/davidzhou11225/p/4761965.html
     /// </summary>
     public partial class MainWindow : Window
     {
@@ -97,12 +102,40 @@ namespace DoraPocket.WPF
 
         private void Depreciation_Click(object sender, RoutedEventArgs e)
         {
-            frmMain.Navigate(new Uri("Views/Depreciation/DepreciationView.xaml", UriKind.RelativeOrAbsolute));
+            GetOrCreateNewTab("折旧", "Views/Depreciation/DepreciationView.xaml");
         }
 
         private void Induction_Click(object sender, RoutedEventArgs e)
         {
-            frmMain.Navigate(new Uri("Views/Induction/InductionView.xaml", UriKind.RelativeOrAbsolute));
+            GetOrCreateNewTab("归纳", "Views/Induction/InductionView.xaml");
+        }
+
+        private void GetOrCreateNewTab(string head, string uri)
+        {
+            var index = GetTabItemIndex(head);
+            if (index == -1)
+            {
+                index = tabControl.Items.Count;
+                var frame = new Frame();
+                frame.Source = new Uri(uri, UriKind.Relative);
+                var tabItem = new TabItem { Header = head, Content = frame };
+                tabControl.Items.Add(tabItem);
+            }
+            tabControl.SelectedIndex = index;
+        }
+
+        private int GetTabItemIndex(string head)
+        {
+            var count = tabControl.Items.Count;
+            for (int i = 0; i < count; i++)
+            {
+                var tabItem = tabControl.Items[i] as TabItem;
+                if (head.Equals(tabItem.Header.ToString()))
+                {
+                    return i;
+                }
+            }
+            return -1;
         }
     }
 }
