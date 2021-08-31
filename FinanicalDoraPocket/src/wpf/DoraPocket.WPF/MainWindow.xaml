@@ -12,13 +12,18 @@
         Closing="Window_Closing"
         Deactivated="Window_Deactivated"
         Closed="Window_Closed"
-        Title="小马哥小工具" WindowStartupLocation="CenterOwner" Topmost="True" Icon="Resources/icon.ico"
+        Title="马小姐的三星扇" WindowStartupLocation="CenterOwner" Topmost="True" Icon="Resources/icon.ico"
         WindowState="Maximized" ShowInTaskbar="True" ResizeMode="CanResize" WindowStyle="SingleBorderWindow"
         Width="800"
         Height="450"
         SizeToContent="Manual">
     <DockPanel>
-        <Menu DockPanel.Dock="Top">
+        <Menu DockPanel.Dock="Left">
+            <Menu.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel Orientation="Vertical"/>
+                </ItemsPanelTemplate>
+            </Menu.ItemsPanel>
             <MenuItem x:Name="depreciation" Header="折旧" Click="Depreciation_Click"/>
             <MenuItem x:Name="induction" Header="归纳" Click="Induction_Click"/>
             <MenuItem x:Name="setting" Header="设置" Click="Setting_Click"/>
